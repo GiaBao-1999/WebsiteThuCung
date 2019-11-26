@@ -1,0 +1,83 @@
+﻿@model PagedList.IPagedList<Petshop.Models.ThuCung>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>
+                    Chủng loại
+                </th>
+                <th>
+                    Tên loại
+                </th>
+                <th>
+                    Tên thú cung
+                </th>
+                <th>
+                    Màu lông
+                </th>
+                <th>
+                    Cân nặng
+                </th>
+                <th>
+                    Tuổi
+                </th>
+                <th>
+                    Hình ảnh
+                </th>
+                <th>
+                    Giá
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChungLoai.TenChungLoai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Loai.TenLoai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenThuCung)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MauLong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CanNang)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tuoi)
+                    </td>
+                    <td>
+                        <img src="~/Content/img/Pet/@item.HinhAnh" width="60" height="65" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gia)
+                    </td>
+                    <td>
+                        <a href="/Admin/ManagermentThuCungs/Edit?id=@item.MaThuCung" class="btn btn-success"><i class="glyphicon-edit"></i></a>
+                        <a href="/Admin/ManagermentThuCungs/Details?id=@item.MaThuCung" class="btn btn-info"><i class="glyphicon-open"></i></a>
+                        <a href="/Admin/ManagermentThuCungs/Delete?id=@item.MaThuCung" class="btn btn-danger"><i class="glyphicon-stop"></i></a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        @Html.PagedListPager(Model,page => Url.Action("Index", new { page }))
+    </div>
+</div>

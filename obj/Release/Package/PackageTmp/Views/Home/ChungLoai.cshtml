@@ -1,0 +1,58 @@
+﻿@model PagedList.IPagedList<Petshop.Models.ThuCung>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "ChungLoai";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container" style="margin-top:20px;">
+    <div class="row">
+        <div class="col-md-4">
+          
+                    @Html.Partial("Loai")
+              
+            </div>
+      
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    @{ 
+                        int id = ViewBag.idloai;
+                    }
+                    @Html.Partial("GiongLoai", id)
+                </div>
+            </div>
+            <div class="row">
+                @foreach(var item in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading text-center">
+                                <h4>@item.TenThuCung</h4>
+                            </div>
+                            <div class="panel-body text-center">
+                                <img src="~/Content/img/Pet/@item.HinhAnh" width="190" height="200" />
+                            </div>
+                            <div class="panel-footer">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        @item.Gia VND
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.ActionLink("Chi tiết", "Index", "Pet", new { ID = @item.MaThuCung}, new { @class = "btn btn-info"})
+                                        @Html.ActionLink("Mua", "Add", "Cart", new { ID = @item.MaThuCung }, new { @class = "btn btn-warning" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    @Html.PagedListPager(Model, page => Url.Action("ChungLoai",new { page }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

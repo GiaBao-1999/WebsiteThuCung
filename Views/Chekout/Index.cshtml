@@ -1,0 +1,49 @@
+﻿@model Petshop.Models.GioHang
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>Mã sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Hình ảnh</th>
+                    <th>Số lượng</th>
+                    <th>Giá</th>
+                </tr>
+                @foreach(var item in Model.Cart)
+                {
+                    <tr>
+                        <td>@item.MaSanPham</td>
+                        <td>@item.TenSanPham</td>
+                        <td><img src="~/Content/img/Pet/@item.HinhAnh" width="60" height="65" /></td>
+                        <td>@item.SoLuong</td>
+                        <td>@item.Gia</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-info text-right">
+                Tổng giá trị đơn hàng: @Model.TongTien() VND
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-inline" action="/Chekout/DatHang" method="post">
+                <div class="form-inline">
+                    <label>Địa chỉ</label>
+                    <input type="text" name="Address" class="form-control" />
+                    <input type="submit" value="Đặt hàng" class="btn btn-info" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

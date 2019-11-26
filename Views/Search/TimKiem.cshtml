@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Petshop.Models.ThuCung>
+@foreach(var item in Model)
+{
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @item.TenThuCung
+            </div>
+            <div class="panel-body">
+                <img src="~/Content/img/Pet/@item.HinhAnh" width="190" height="200" />
+            </div>
+            <div class="panel-footer">
+                @Html.ActionLink(item.TenThuCung, "Index", "Pet", new { ID = item.MaThuCung }, new { @class = "" })
+            </div>
+        </div>
+    </div>
+}

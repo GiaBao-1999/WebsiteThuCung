@@ -1,0 +1,13 @@
+﻿@using Petshop.Models
+@{
+    var db = new DataProvider();
+}
+<div class="list-group">
+    <a href="#" class="list-group-item disabled">
+        <span class="glyphicon glyphicon-list-alt"></span> Chủng loại
+    </a>
+    @foreach (var item in db.Loais.ToList())
+    {
+        @Html.ActionLink(item.TenLoai, "ChungLoai", "Home", new { ID = item.MaLoai }, new { @class = "list-group-item" })
+    }
+</div>

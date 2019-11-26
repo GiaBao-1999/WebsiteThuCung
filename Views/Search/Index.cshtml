@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script>
+        $(function () {
+            $("input[type=button]").click(function () {
+                var key = $("input[type=text]").val();
+                console.log(key);
+                $.ajax({
+                    url: "/Search/TimKiem",
+                    data: { keyword: key },
+                    success: function (response) {
+                        $("#Result").html("");
+                        $("#Result").append(response);
+                    },
+                    type:"GET"
+                })
+            });
+        });
+    </script>    
+}
+<div class="container" style="margin-top:20px;">
+    <div class="row">
+        <div class="form-horizontal">
+            <div class="form-inline">
+                <label>Nhập nội dung tìm kiếm</label>
+                <input type="text" id="key" class="form-control" />
+                <input type="button" value="search" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+    <div id="Result" class="row">
+
+    </div>
+</div>
+

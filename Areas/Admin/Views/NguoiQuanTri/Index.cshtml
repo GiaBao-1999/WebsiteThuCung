@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="row">
+    <div class="col-md-4">
+        <div class="alert alert-info">
+            <h4>Số lượng khách hàng</h4>
+            @ViewBag.slkhachhang khách hàng
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="alert alert-success">
+            <h4>Số lượng sản phẩm</h4>
+            @ViewBag.slsanpham sản phẩm
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="alert alert-warning">
+            <h4>Số lượng đơn hàng</h4>
+            @ViewBag.sldonhang đơn hàng
+        </div>
+    </div>
+</div>
+

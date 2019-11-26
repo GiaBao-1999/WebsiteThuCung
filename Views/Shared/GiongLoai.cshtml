@@ -1,0 +1,17 @@
+﻿@model int
+@using Petshop.Models
+@{ 
+    var db = new DataProvider();
+    List<ChungLoai> dsChungLoai = db.ChungLoais.Where(x => x.MaLoai == Model).ToList();
+}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            @foreach(var item in dsChungLoai)
+            {
+               <li>@Html.ActionLink(item.TenChungLoai, "ChungLoaiTheoLoai", "Loai", new { maloai=Model, machungloai=item.MaChungLoai}, new { @class=""})</li>
+            }
+           
+        </ul>
+    </div>
+</nav>
